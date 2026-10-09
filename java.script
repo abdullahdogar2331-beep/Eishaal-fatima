@@ -1,0 +1,99 @@
+
+const flames = document.querySelectorAll(".flame");
+const blowMessage = document.getElementById("blowMessage");
+let candlesBlown = false;
+
+function blowCandles() {
+  if (candlesBlown) return;
+
+  candlesBlown = true;
+
+  flames.forEach(flame => {
+    flame.classList.add("out");
+  });
+
+  blowMessage.textContent =
+    "✨ Wish made! Happy 7th Birthday, Eishaal Fatima! 💖";
+}
+
+// Tap any candle flame to blow it out.
+flames.forEach(flame => {
+  flame.style.cursor = "pointer";
+  flame.addEventListener("click", blowCandles);
+});
+
+blowMessage.addEventListener("click", blowCandles);
+
+// Detect blowing using the microphone, if supported and permitted.
+async function enableBlowDetection() {
+  if (!navigator.mediaDevices?.getUserMedia) return;
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true
+    });
+
+    const AudioContextClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) return;
+
+    const audioContext = new AudioContextClass();
+    const analyser = audioContext.createAnalyser();
+    const microphone =
+      audioContext.createMediaStreamSource(stream);
+
+    analyser.fftSize = 512;
+    microphone.connect(analyser);
+
+    const samples = new Uint8Array(analyser.fftSize);
+    let loudSince = 0;
+    let cooldown = false;
+
+    function listenForBlow() {
+      if (candlesBlown) {
+        stream.getTracks().forEach(track => track.stop());
+        audioContext.close();
+        return;
+      }
+
+      analyser.getByteTimeDomainData(samples);
+
+      let sum = 0;
+      for (const sample of samples) {
+        const value = (sample - 128) / 128;
+        sum += value * value;
+      }
+
+      const volume = Math.sqrt(sum / samples.length);
+      const now = Date.now();
+
+      if (volume > 0.18 && !cooldown) {
+        if (!loudSince) loudSince = now;
+
+        if (now - loudSince > 180) {
+          blowCandles();
+          cooldown = true;
+        }
+      } else if (volume <= 0.18) {
+        loudSince = 0;
+      }
+
+      requestAnimationFrame(listenForBlow);
+    }
+
+    blowMessage.textContent =
+      "🎤 Microphone ready — blow gently to extinguish the candles!";
+
+    listenForBlow();
+
+  } catch (error) {
+    blowMessage.textContent =
+      "🌬️ Tap the candle flames to blow them out!";
+  }
+}
+
+// Ask for microphone permission after the birthday card opens.
+document.getElementById("openBtn").addEventListener("click", () => {
+  enableBlowDetection();
+}, { once: true });
