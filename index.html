@@ -1,0 +1,551 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 7th Birthday Eishaal Fatima 🎂</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #170b2b;
+  color: white;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 15px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top, #783b86, #301440 50%, #170b2b);
+}
+
+.glow {
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  background: #ff70bd;
+  filter: blur(90px);
+  opacity: .35;
+  top: -80px;
+  left: -80px;
+}
+
+.glow2 {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: #9865ff;
+  filter: blur(100px);
+  right: -100px;
+  bottom: -100px;
+}
+
+.cover, .birthday {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+}
+
+.cover {
+  padding: 45px 24px;
+  border: 1px solid #ffffff35;
+  border-radius: 30px;
+  background: #ffffff12;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 80px #0005;
+}
+
+.crown {
+  font-size: 65px;
+  color: #ffe2a0;
+  margin-bottom: 15px;
+  animation: float 3s infinite ease-in-out;
+}
+
+.small-title {
+  color: #ffe2a0;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 8vw, 65px);
+  line-height: 1.12;
+  color: #fff0fa;
+}
+
+h1 span {
+  display: block;
+  color: #ffabd4;
+  font-style: italic;
+}
+
+.intro {
+  color: #e6d8f5;
+  line-height: 1.8;
+  margin: 22px auto 28px;
+  max-width: 430px;
+  font-size: 14px;
+}
+
+.open-btn {
+  border: none;
+  padding: 16px 25px;
+  border-radius: 50px;
+  background: linear-gradient(110deg, #ffe6a7, #ff9fce, #c5a5ff);
+  color: #45183f;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px #ff75bb55;
+  transition: .3s;
+}
+
+.open-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.hint {
+  margin-top: 20px;
+  font-size: 10px;
+  color: #d6c0e9;
+  letter-spacing: 1px;
+}
+
+.birthday {
+  display: none;
+}
+
+.birthday.show {
+  display: block;
+  animation: reveal 1s ease both;
+}
+
+.card {
+  padding: 38px 20px;
+  border-radius: 28px;
+  color: #51244f;
+  background: linear-gradient(145deg, #fff9fd, #ffe7f3, #f1e5ff);
+  border: 4px double #e5b1d0;
+  box-shadow: 0 25px 90px #0007;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "✦";
+  position: absolute;
+  top: 12px;
+  left: 17px;
+  color: #c89b46;
+  font-size: 25px;
+}
+
+.card::after {
+  content: "✦";
+  position: absolute;
+  top: 12px;
+  right: 17px;
+  color: #c89b46;
+  font-size: 25px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #a45190;
+  font-weight: 700;
+}
+
+.birthday h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 9vw, 65px);
+  color: #d83286;
+  margin-top: 16px;
+  line-height: 1.1;
+}
+
+.birthday h2 span {
+  display: block;
+  color: #753ba8;
+}
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 6vw, 40px);
+  color: #a52c83;
+  font-weight: 800;
+  margin: 15px 0;
+}
+
+.age {
+  margin: 18px auto;
+  width: 92px;
+  height: 92px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 54px;
+  background: linear-gradient(140deg, #ff6eac, #9553db);
+  border: 4px solid white;
+  outline: 2px dashed #df8fbe;
+  box-shadow: 0 8px 25px #b95eac55;
+  animation: float 3s infinite ease-in-out;
+}
+
+.date {
+  display: inline-block;
+  margin: 5px 0 10px;
+  padding: 11px 22px;
+  border-radius: 30px;
+  color: white;
+  background: linear-gradient(90deg, #db398b, #9651c9);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.message {
+  max-width: 470px;
+  margin: 12px auto;
+  line-height: 1.9;
+  font-size: 13px;
+  color: #775578;
+}
+
+.cake {
+  position: relative;
+  height: 155px;
+  width: 250px;
+  max-width: 90%;
+  margin: 20px auto 5px;
+}
+
+.cake-base {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  bottom: 10px;
+  border-radius: 10px 10px 18px 18px;
+  background: linear-gradient(#fff1fa 0 20%, #f69ac7 20%);
+  border-bottom: 8px solid #df6ca8;
+  box-shadow: 0 10px 0 #d9b7e8;
+}
+
+.cake-base::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -2%;
+  width: 104%;
+  height: 25px;
+  background: #fff8fd;
+  border-radius: 50%;
+  border-bottom: 4px dotted #ec8fbc;
+}
+
+.cake-base::after {
+  content: "Eishaal ♡";
+  position: absolute;
+  top: 27px;
+  left: 0;
+  right: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #a52c83;
+}
+
+.candle {
+  position: absolute;
+  z-index: 2;
+  bottom: 83px;
+  left: 50%;
+  width: 11px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    135deg, white 0 7px, #a77be0 7px 14px
+  );
+  border-radius: 4px;
+}
+
+.candle:nth-child(2) {
+  margin-left: -32px;
+  background: repeating-linear-gradient(
+    135deg, white 0 7px, #ff70ac 7px 14px
+  );
+}
+
+.candle:nth-child(3) {
+  margin-left: 21px;
+  background: repeating-linear-gradient(
+    135deg, white 0 7px, #e9b34d 7px 14px
+  );
+}
+
+.flame {
+  position: absolute;
+  width: 17px;
+  height: 23px;
+  left: -3px;
+  top: -23px;
+  border-radius: 50%;
+  background: radial-gradient(#fff9a7, #ff9a36);
+  filter: drop-shadow(0 0 8px #ffb742);
+  animation: flicker .3s infinite alternate;
+}
+
+.signature {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: #c23286;
+  margin-top: 15px;
+}
+
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  width: 43px;
+  height: 55px;
+  border-radius: 50%;
+  animation: riseBalloon 13s linear infinite;
+  z-index: 1;
+  opacity: .8;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  top: 54px;
+  left: 21px;
+  height: 60px;
+  border-left: 1px solid #ffffff80;
+}
+
+.b1 { left: 5%; background: #ff70b8; }
+.b2 { left: 25%; background: #ffd16b; animation-delay: 3s; }
+.b3 { right: 8%; background: #a78bfa; animation-delay: 1s; }
+.b4 { right: 25%; background: #ffb1d5; animation-delay: 5s; }
+
+.sparkle {
+  position: fixed;
+  color: #ffdc90;
+  pointer-events: none;
+  animation: sparkle 3s linear infinite;
+  z-index: 3;
+}
+
+.music-note {
+  margin-top: 12px;
+  color: #a077a8;
+  font-size: 10px;
+}
+
+@keyframes float {
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes flicker {
+  to { transform: rotate(-8deg) scale(.85); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: scale(.88) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes riseBalloon {
+  to { transform: translateY(-120vh) rotate(12deg); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: translateY(20px) scale(.5); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) scale(1.2); }
+}
+
+@media (max-width: 420px) {
+  .card { padding: 35px 14px; }
+  .intro { font-size: 13px; }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <div class="glow"></div>
+  <div class="glow2"></div>
+
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+  <div class="balloon b4"></div>
+
+  <section class="cover" id="cover">
+    <div class="crown">♕</div>
+    <div class="small-title">A LITTLE WISH WRAPPED IN MAGIC</div>
+
+    <h1>A Royal Birthday <span>Surprise</span></h1>
+
+    <p class="intro">
+      A special day is waiting for a very special princess.
+      Open this little surprise to discover a world full of
+      love, sparkles and birthday wishes. 💗
+    </p>
+
+    <button class="open-btn" id="openBtn">
+      ✨ Open Your Birthday Card ♡
+    </button>
+
+    <div class="hint">
+      MADE ESPECIALLY FOR EISHAAL FATIMA · 7 NOVEMBER
+    </div>
+  </section>
+
+  <section class="birthday" id="birthday">
+    <div class="card">
+      <div class="label">A LITTLE PRINCESS'S SPECIAL DAY</div>
+
+      <h2>Happy <span>Birthday!</span></h2>
+
+      <div class="name">Eishaal Fatima</div>
+
+      <div class="age">7</div>
+
+      <div class="date">♡ &nbsp; 7 NOVEMBER &nbsp; ♡</div>
+
+      <div class="cake">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="cake-base"></div>
+      </div>
+
+      <p class="message">
+        May your 7th birthday be filled with magical dreams,
+        sweet surprises, happy giggles and endless love.
+        Keep shining bright, little princess! You make the
+        world more beautiful just by being you. 💖
+      </p>
+
+      <div class="signature">With lots of love, just for you ✨</div>
+
+      <div class="music-note" id="musicNote">
+        A little birthday melody for you ♡
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const cover = document.getElementById("cover");
+const birthday = document.getElementById("birthday");
+const openBtn = document.getElementById("openBtn");
+
+let musicStarted = false;
+
+openBtn.addEventListener("click", () => {
+  cover.style.display = "none";
+  birthday.classList.add("show");
+
+  // Opening the card is a user gesture, so attempt music here.
+  playBirthdayMelody();
+});
+
+// Original synthesized birthday-style melody.
+// No external audio file is needed.
+function playBirthdayMelody() {
+  if (musicStarted) return;
+
+  const AudioContextClass =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContextClass) return;
+
+  const audio = new AudioContextClass();
+
+  audio.resume().then(() => {
+    musicStarted = true;
+
+    document.getElementById("musicNote").textContent =
+      "A little birthday melody, made with love ♡";
+
+    const notes = [
+      523, 523, 587, 523, 698, 659,
+      523, 523, 587, 523, 784, 698,
+      523, 523, 1047, 880, 698, 659,
+      587, 932, 932, 880, 698, 784, 698
+    ];
+
+    let i = 0;
+
+    function playNote() {
+      if (audio.state === "closed") return;
+
+      const oscillator = audio.createOscillator();
+      const volume = audio.createGain();
+      const now = audio.currentTime;
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = notes[i % notes.length];
+
+      volume.gain.setValueAtTime(0.0001, now);
+      volume.gain.exponentialRampToValueAtTime(0.09, now + 0.03);
+      volume.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+
+      oscillator.connect(volume);
+      volume.connect(audio.destination);
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.34);
+
+      i++;
+      setTimeout(playNote, 390);
+    }
+
+    playNote();
+  }).catch(() => {});
+}
+
+// Create floating sparkle decorations.
+const symbols = ["✦", "♡", "✧", "♥"];
+
+for (let i = 0; i < 22; i++) {
+  const sparkle = document.createElement("span");
+
+  sparkle.className = "sparkle";
+  sparkle.textContent = symbols[i % symbols.length];
+  sparkle.style.left = Math.random() * 100 + "%";
+  sparkle.style.top = Math.random() * 100 + "%";
+  sparkle.style.fontSize = (10 + Math.random() * 15) + "px";
+  sparkle.style.animationDelay = Math.random() * 3 + "s";
+
+  document.body.appendChild(sparkle);
+}
+</script>
+</body>
+</html>
+```
