@@ -1,0 +1,18 @@
+
+/* Candles blow-out animation */
+.flame {
+  transition: opacity .3s, transform .3s;
+}
+
+.flame.out {
+  opacity: 0;
+  transform: translateY(-18px) scale(0);
+  animation: none;
+}
+
+.blow-message {
+  color: #a45190;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
